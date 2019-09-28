@@ -4,6 +4,8 @@ Yet another react datepicker.
 
 So WIP, very not needed, much salvage.
 
+![rendered component](./docs/screenshot-01.png)
+
 ## TODO
 
 - use scss modules
