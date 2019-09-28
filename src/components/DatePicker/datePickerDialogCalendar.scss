@@ -1,0 +1,66 @@
+@import '../../styles/variables';
+@import '../../styles/textMixins';
+
+.simple-date-picker-calendar {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  &__head-cell, &__body-cell {
+    text-align: center;
+    height: 35px;
+  }
+
+  &__head-cell {
+    text-transform: uppercase;
+    color: $color-grey;
+    border-bottom: 1px solid $color-grey;
+  }
+
+  &__body-cell {
+    font-size: 12px;
+    color: $color-lightgrey;
+  }
+
+  &__day {
+    @include text-link;
+    height: 35px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--not-allowed {
+      color: $color-grey;
+      cursor: default;
+
+      &:hover {
+        color: $color-grey;
+      }
+    }
+  }
+
+  &__day-radius {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+  }
+
+  // cell color modifiers
+  &__body-cell--today {
+    .simple-date-picker-calendar__day-radius {
+      background-color: $color-grey;
+    }
+  }
+
+  &__body-cell--selected {
+    .simple-date-picker-calendar__day-radius {
+      background-color: $color-blue;
+      color: $color-white;
+    }
+  }
+}

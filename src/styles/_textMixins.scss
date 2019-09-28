@@ -1,0 +1,11 @@
+@import "variables";
+
+@mixin text-link($color: $color-blue) {
+  cursor: pointer;
+  color: $color;
+  text-decoration: none;
+
+  &:hover {
+    color: lighten($color, 10%);
+  }
+}

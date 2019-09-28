@@ -1,0 +1,37 @@
+@import "../../styles/variables";
+@import "../../styles/responsiveMixins";
+
+.root {
+  display: inline-block;
+  position: relative;
+  border: 1px solid $color-lightgrey;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.clickable {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectedDate {
+  display: inline-block;
+  min-width: 85px;
+  font-size: 14px;
+  padding: 1px 2px 0 1px;
+  text-align: left;
+}
+
+.dialog {
+  top: 25px;
+  right: 0;
+
+  @include responsive-down(phablet) {
+    position: fixed;
+    top: 100px;
+    left: calc(50% - 160px);
+    box-shadow: 0 0 50px 20px rgba($color-black-transparent, .3);
+  }
+}

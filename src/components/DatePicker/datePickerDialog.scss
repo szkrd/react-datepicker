@@ -1,0 +1,49 @@
+@import '../../styles/variables';
+@import '../../styles/textMixins';
+@import '../../styles/stateMixins';
+
+.simple-date-picker {
+  width: 320px;
+  border: 1px solid $color-lightgrey;
+  background-color: $color-white;
+  border-radius: 5px;
+  font-size: 14px;
+  position: absolute;
+  z-index: $z-datepicker;
+
+  &__current-month {
+    text-align: center;
+    font-weight: bold;
+    padding: 8px 0;
+  }
+
+  &__year-selector > &__select-input {
+    width: 90px;
+  }
+
+  &__year-selector {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__prev-month, &__next-month {
+    display: block;
+    position: absolute;
+    top: 0;
+    padding: 7px 3px 5px 5px;
+  }
+
+  &__prev-month {
+    left: 0;
+    &--disabled {
+      @include state-is-disabled;
+    }
+  }
+
+  &__next-month {
+    right: 0;
+    &--disabled {
+      @include state-is-disabled;
+    }
+  }
+}

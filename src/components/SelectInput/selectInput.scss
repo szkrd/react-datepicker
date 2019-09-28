@@ -1,0 +1,139 @@
+@import "../../styles/variables";
+@import "../../styles/stateMixins";
+@import "../../styles/responsiveMixins";
+
+// css only select from
+// https://kyusuf.com/post/completely-css-custom-checkbox-radio-buttons-and-select-boxes
+.select-input {
+  align-self: center;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 350px;
+  @include responsive-down(phablet) {
+    width: 280px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $color-lightgrey;
+    text-align: center;
+    margin-bottom: 7px;
+    display: block;
+  }
+
+  select {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: 0;
+    border: 2px solid $color-grey;
+    border-radius: 10px;
+    background: $color-white;
+    color: $color-lightgrey;
+    font-size: 14px;
+    line-height: 17px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:focus, &:active {
+      outline: none;
+      border-color: $color-lightgrey;
+    }
+
+    // remove dotted border in firefox, the important is needed
+    &:-moz-focusring,
+    &::-moz-focus-inner {
+      color: transparent !important;
+      text-shadow: 0 0 0 $color-lightgrey;
+      background-image: none;
+      border: 2px solid $color-grey;
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:hover,
+    &:focus {
+      color: $color-lightgrey;
+      border-color: $color-lightgrey;
+    }
+
+    &:disabled {
+      @include state-is-disabled;
+    }
+  }
+
+  &__toggle-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--small {
+      top: -68px;
+    }
+
+    &--labeled {
+      top: 26px;
+    }
+
+    &--labeled-small {
+      top: -17px;
+    }
+  }
+
+  &__arrow {
+    font-size: 16px;
+    color: $color-grey;
+  }
+
+  &__toggle-icon--is-filled &__arrow,
+  select:hover ~ &__toggle-icon &__arrow,
+  select:focus ~ &__toggle-icon &__arrow {
+    color: $color-lightgrey;
+  }
+
+  select:disabled ~ &__toggle-icon &__arrow {
+    color: $color-grey;
+  }
+
+  &--is-filled select {
+    // TODO @include input-is-dirty;
+  }
+
+  // right after the is filled style above
+  // (`&--is-invalid.&--is-filled state` is not a valid scss selector)
+  &--is-invalid select {
+    border-color: $color-red;
+  }
+
+  // mini load spinner
+  &--is-loading &__toggle-icon svg {
+    display: none;
+  }
+
+  &__spinner {
+    display: none;
+    // TODO @include input-tiny-spinner;
+  }
+
+  &--is-loading &__toggle-icon &__spinner {
+    display: block;
+  }
+
+  &--small {
+    width: 350px - 145px - 2 * 2px - 2 * 20px;
+    height: 110px;
+  }
+}

@@ -1,0 +1,54 @@
+@import "../../styles/variables";
+
+@mixin icon-masked-svg($image-url, $color) {
+  background-color: $color;
+  -webkit-mask: url($image-url) no-repeat center;
+  mask: url($image-url) no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+
+  &--size-s {
+    width: 18px;
+    height: 18px;
+  }
+
+  &--size-m {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--size-l {
+    width: 46px;
+    height: 46px;
+  }
+
+  &--size-contain {
+    width: 100%;
+    height: 100%;
+  }
+
+  &--calendar--grey {
+    @include icon-masked-svg("./calendar.svg", $color-grey);
+  }
+
+  &--chevron-left--grey {
+    @include icon-masked-svg("./chevron-right.svg", $color-grey);
+    transform: rotate(180deg);
+  }
+
+  &--chevron-right--grey {
+    @include icon-masked-svg("./chevron-right.svg", $color-grey);
+  }
+
+  &--chevron-down--grey {
+    @include icon-masked-svg("./chevron-right.svg", $color-grey);
+    transform: rotate(90deg);
+  }
+}
