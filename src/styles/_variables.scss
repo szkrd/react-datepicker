@@ -1,13 +1,31 @@
-// COLORS
-// ======
+// COLORS BY NAME
+// ==============
 
-$color-red: #f66;
-$color-blue: #39f;
+$color-darkred: #b00;
+$color-red: #ef2929;
+$color-orange: #fcaf3e;
+$color-yellow: #fce94f;
+$color-green: #73d216;
+$color-blue: #729fcf;
+$color-darkblue: #3465a4;
 $color-black: #000;
-$color-grey: #474747;
-$color-lightgrey: #8c8c8c;
+$color-spacegrey: #2e3436;
+$color-darkgrey: #555753;
+$color-grey: #888a85;
+$color-lightgrey: #d3d7cf;
 $color-white: #fff;
+
+// safari renders transparent gradient stops "with colors"
 $color-black-transparent: rgba(0, 0, 0, 0);
+$color-white-transparent: rgba(255, 255, 255, 0);
+
+// COLORS BY FUNCTIONALITY
+// =======================
+
+$color-success: $color-green;
+$color-warning: $color-orange;
+$color-danger: $color-red;
+$color-link: $color-darkblue;
 
 // LAYERS
 // ======

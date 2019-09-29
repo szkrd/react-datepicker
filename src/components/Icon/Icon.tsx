@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { CSSProperties } from 'react'
-import './icon.scss'
+import './Icon.scss'
 
 export type IconIds =
   | 'calendar--grey'

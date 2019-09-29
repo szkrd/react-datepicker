@@ -3,16 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "24.0.18",
-    "@types/node": "12.7.8",
-    "@types/react": "16.9.3",
-    "@types/react-dom": "16.9.1",
-    "classnames": "2.2.6",
+    "history": "4.10.1",
     "moment": "2.24.0",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
-    "react-scripts": "3.1.2",
-    "typescript": "3.6.3"
+    "react": "16.10.0",
+    "react-dom": "16.10.0",
+    "react-scripts": "3.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,13 +16,17 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "semistandard",
+      "prettier"
+    ]
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ],
     "development": [
       "last 1 chrome version",
@@ -37,6 +36,20 @@
   },
   "devDependencies": {
     "@types/classnames": "2.2.9",
-    "node-sass": "4.12.0"
+    "@types/history": "4.7.3",
+    "@types/jest": "24.0.18",
+    "@types/node": "12.7.8",
+    "@types/react": "16.9.3",
+    "@types/react-dom": "16.9.1",
+    "eslint-config-prettier": "6.3.0",
+    "eslint-config-semistandard": "15.0.0",
+    "eslint-config-standard": "14.1.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-node": "10.0.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "node-sass": "4.12.0",
+    "prettier": "1.18.2",
+    "typescript": "3.6.3"
   }
 }

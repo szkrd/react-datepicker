@@ -1,32 +1,32 @@
-import * as React from 'react'
-import { useState } from 'react'
-import { Moment } from 'moment'
-import DatePickerDialog from './DatePickerDialog'
-import Icon from '../Icon/Icon'
-import styles from './datePicker.module.scss'
-import moment from 'moment'
+import * as React from 'react';
+import { useState } from 'react';
+import { Moment } from 'moment';
+import DatePickerDialog from './DatePickerDialog';
+import Icon from '../Icon/Icon';
+import styles from './DatePicker.module.scss';
+import moment from 'moment';
 
 interface IProps {
-  onChange: (selectedDate: Moment) => void
-  selectedDate: Moment
-  minDate?: Moment
-  maxDate?: Moment
+  onChange: (selectedDate: Moment) => void;
+  selectedDate: Moment;
+  minDate?: Moment;
+  maxDate?: Moment;
 }
 
 export default function DatePicker(props: IProps) {
-  const [showDatePicker, setShowDatePicker] = useState(false)
-  const { selectedDate, minDate, maxDate, onChange } = props
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const { selectedDate, minDate, maxDate, onChange } = props;
 
   const handleToggle = () => {
-    setShowDatePicker(!showDatePicker)
-  }
+    setShowDatePicker(!showDatePicker);
+  };
 
   const handleSelect = (selectedDate: Moment) => {
-    onChange(selectedDate)
-    setShowDatePicker(false)
-  }
+    onChange(selectedDate);
+    setShowDatePicker(false);
+  };
 
-  const viewportDate = selectedDate || moment()
+  const viewportDate = selectedDate || moment();
 
   return (
     <div className={styles.root}>
@@ -48,5 +48,5 @@ export default function DatePicker(props: IProps) {
         />
       )}
     </div>
-  )
+  );
 }

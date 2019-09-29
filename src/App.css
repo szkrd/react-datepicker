@@ -1,4 +1,11 @@
 .App {
-  text-align: center;
   padding: 30px;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background-color: silver;
+  padding: 0;
+  margin: 10px 0;
 }
