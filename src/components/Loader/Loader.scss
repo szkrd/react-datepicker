@@ -3,14 +3,12 @@
 //@import "../../styles/layoutMixins";
 
 .loader-component {
-  $loader-size: 40px;
-  $loader-thickness: 6px;
+  $loader-size: 60px;
+  $loader-thickness: 8px;
 
-  width: $loader-size + ($loader-size / 2);
-  height: $loader-size + ($loader-size / 2);
+  width: $loader-size;
+  height: $loader-size;
   margin: auto;
-
-  // centering in the viewport
 
   &--viewport-center {
     position: fixed;
@@ -18,9 +16,7 @@
     top: calc(50vh - #{$loader-size / 2});
   }
 
-  // cover layer related
-
-  &--round { // enforces round for everything (especially for the cover)
+  &--round { // enforces round for the root element
     border-radius: 50%;
     overflow: hidden;
   }
@@ -53,8 +49,8 @@
 
   &__ring {
     border-radius: 50%;
-    width: $loader-size;
-    height: $loader-size;
+    width: $loader-size - $loader-thickness * 2;
+    height: $loader-size - $loader-thickness * 2;
     position: absolute;
     border: $loader-thickness solid $color-lightgrey;
     border-top: $loader-thickness solid $color-darkblue;

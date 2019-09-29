@@ -1,0 +1,92 @@
+@import "../../styles/variables";
+@import "../../styles/stateMixins";
+//@import "../../styles/inputMixins";
+
+.button-component {
+  $loader-size: 60px; // WARN hardcoded value
+
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  color: $color-white;
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 1.75;
+
+  &--size-s {
+    font-size: 13px;
+    padding: 1px 8px;
+    .button-component__loader {
+      transform: scale(.3);
+      top: calc(50% - #{$loader-size * .3 / 2});
+      left: calc(50% - #{$loader-size * .3 / 2});
+    }
+  }
+
+  &--size-m {
+    font-size: 16px;
+    padding: 4px 10px;
+  }
+
+  @mixin colored-button ($color, $text-color: $color-white) {
+    background-color: $color;
+    color: $text-color;
+    border: 1px solid darken($color, 10%);
+    &:hover:not(.button-component--loading):not(.button-component--disabled) {
+      background-color: darken($color, 10%);
+    }
+  }
+
+  &--color-primary {
+    @include colored-button($color-primary)
+  }
+
+  &--color-secondary {
+    @include colored-button($color-secondary)
+  }
+
+  &--color-success {
+    @include colored-button($color-success)
+  }
+
+  &--color-warning {
+    @include colored-button($color-warning, $color-spacegrey)
+  }
+
+  &--color-danger {
+    @include colored-button($color-danger)
+  }
+
+  &--loading {
+    filter: brightness(90%);
+  }
+
+  &__loader {
+    transform-origin: top left;
+    position: absolute;
+    transform: scale(.4);
+    top: calc(50% - #{$loader-size * .4 / 2});
+    left: calc(50% - #{$loader-size * .4 / 2});
+  }
+
+  .loader-component__ring {
+    border-color: $color-spacegrey rgba($color-black, .1) rgba($color-black, .1);
+  }
+
+  &--disabled {
+    @include state-is-disabled;
+    .button-component__text {
+      opacity: .5;
+    }
+  }
+
+  &--loading {
+    cursor: default;
+    .button-component__text {
+      visibility: hidden;
+    }
+  }
+}

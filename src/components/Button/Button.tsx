@@ -1,73 +1,72 @@
-// import * as React from 'react';
-import './button.scss';
-// import Loader from '../Loader/Loader';
-// import Link from '../Link/Link';
+import * as React from 'react';
+import './Button.scss';
+import history from '../../utils/navigation/history'
+import Loader from '../Loader/Loader';
+
+type TOnClickEvent = React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement> | any;
 
 interface IButtonProps {
-  color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+  // color scheme, defaults to the generic secondary
+  color?: 'secondary' | 'primary' | 'success' | 'warning' | 'danger';
   text: string;
-  onClick?: (event?: any) => any;
+  // onClick will be executed on click or enter press, may return explicit false
+  onClick?: (event?: TOnClickEvent) => any;
   disabled?: boolean;
+  // href to be passed to history.push it that's your fancy,
+  // though you're better off using Link for the sake of accessibility
   to?: string;
   loading?: boolean;
-  block?: boolean;
+  // style display, defaults to inline-block
+  display?: 'inline-block' | 'block' | 'inline-flex' | 'flex';
   className?: string;
-  size?: 's' | 'm' | 'l';
+  // defaults medium, we have no large yet
+  size?: 'm' | 's';
 }
 
 export default function Button(props: IButtonProps) {
-  return null;
-  /*
-  const { onClick, disabled, to, loading, size, block, text, className } = props;
-  const text = props.text;
+  const { disabled, to, loading, text } = props;
+  const display = props.display || 'inline-block';
+  const color = props.color || 'secondary'
+  const size = props.size || 'm'
+  const className = [
+    'button-component',
+    `button-component--color-${color}`,
+    `button-component--size-${size}`,
+    loading ? 'button-component--loading' : '',
+    disabled ? 'button-component--disabled' : '',
+    props.className || ''
+  ].join(' ');
+  const style = { display }
 
-  let color = props.color || ButtonColor.Orange;
-  if (isGhost) {
-    color = ButtonColor.Ghost;
-  }
-  const clickHandler = (event: any) => {
-    if (!disabled && onClick) {
+  const onClick = (event: TOnClickEvent) => {
+    if (disabled) {
+      return;
+    }
+    if (typeof props.onClick === 'function') {
+      const ret = props.onClick(event);
+      if (ret === false) {
+        event.stopPropagation();
+        return;
+      }
+    }
+    if (typeof to === 'string') {
+      history.push(to);
+    }
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') {
       onClick(event);
     }
   };
-  const keyDownHandler = (event) => {
-    if (!disabled && onClick && event.key === 'Enter') {
-      onClick();
-    }
-  };
 
-  const buttonColor = color || ButtonColor.Orange;
-
-  const classes: string = classnames({
-    button: true,
-    [className]: !!className,
-    [`button--size-${size}`]: typeof size === 'string',
-    'button--loading': loading,
-    'button--inline': inline,
-    'button--disabled': disabled,
-    'button--orange': buttonColor === ButtonColor.Orange,
-    'button--sunflower': buttonColor === ButtonColor.Sunflower,
-    'button--grey-stroke': buttonColor === ButtonColor.GreyStroke,
-    'button--ghost': buttonColor === ButtonColor.Ghost
-  });
-
-  const spanClasses: string = classnames({
-    disabled: disabled
-  });
-
-  if (to) {
+  // probably we'd be better off with a button, dunno...
+  // on the other hand form elements are always a bitch to style properly
+  // (see: https://css-tricks.com/overriding-default-button-styles/)
     return (
-      <Link className={classes} to={to} onClick={clickHandler}>
-        <span className={spanClasses}>{text}</span>
-      </Link>
-    );
-  } else {
-    return (
-      <div className={classes} onClick={clickHandler} onKeyDown={keyDownHandler} tabIndex={0}>
-        {loading && <Loader className="button__loader" />}
-        {!loading && <span className={spanClasses}>{text}</span>}
+      <div className={className} style={style} onClick={onClick} onKeyDown={onKeyDown} tabIndex={0}>
+        {loading && <Loader className="button-component__loader" />}
+        <span className="button-component__text">{text}</span>
       </div>
     );
-  }
-  */
 }

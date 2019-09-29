@@ -5,7 +5,8 @@ $color-darkred: #b00;
 $color-red: #ef2929;
 $color-orange: #fcaf3e;
 $color-yellow: #fce94f;
-$color-green: #73d216;
+$color-lightgreen: #73d216;
+$color-green: #4e9a06;
 $color-blue: #729fcf;
 $color-darkblue: #3465a4;
 $color-black: #000;
@@ -25,6 +26,8 @@ $color-white-transparent: rgba(255, 255, 255, 0);
 $color-success: $color-green;
 $color-warning: $color-orange;
 $color-danger: $color-red;
+$color-primary: $color-blue;
+$color-secondary: $color-grey;
 $color-link: $color-darkblue;
 
 // LAYERS
