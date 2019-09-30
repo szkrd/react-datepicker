@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { CSSProperties } from 'react'
+import React, { CSSProperties } from 'react'
 import './Icon.scss'
 
 export type IconIds =
@@ -7,6 +6,8 @@ export type IconIds =
   | 'chevron-left--grey'
   | 'chevron-right--grey'
   | 'chevron-down--grey'
+  | 'logout--black'
+  | 'times--darkgrey'
 
 interface IIconProps {
   id?: IconIds
@@ -20,7 +21,7 @@ interface IIconProps {
 
 export default function Icon(props: IIconProps) {
   let { id, size, imageSize } = props
-  let classNames = ['icon', `icon--${id}`]
+  const classNames = ['icon', `icon--${id}`]
   const style: CSSProperties = {}
   size = size || 'm'
 

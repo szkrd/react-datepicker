@@ -6,10 +6,25 @@
   padding: 10px;
 }
 
+.panelCenteredContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .hr {
   height: 1px;
   border: 0;
   background-color: silver;
   padding: 0;
   margin: 10px 0;
+}
+
+.override {
+  // increase specificity
+}
+
+.datePickerDialogExample.override {
+  position: relative;
+  margin: 15px 0;
 }

@@ -51,4 +51,12 @@
     @include icon-masked-svg("./chevron-right.svg", $color-grey);
     transform: rotate(90deg);
   }
+
+  &--logout--black {
+    @include icon-masked-svg("./logout.svg", $color-black);
+  }
+
+  &--times--darkgrey {
+    @include icon-masked-svg("./times.svg", $color-darkgrey);
+  }
 }

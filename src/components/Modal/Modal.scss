@@ -1,0 +1,153 @@
+@import "../../styles/textMixins";
+@import "../../styles/modalMixins";
+@import "../../styles/stateMixins";
+@import "../../styles/modalMixins";
+@import "../../styles/variables";
+@import "../../styles/responsiveMixins";
+@import "../../styles/layoutMixins";
+
+$header-height: 60px;
+$exit-padding: 10px;
+
+.modal {
+  &:before {
+    @include modal-overlay;
+  }
+
+  &-close-icon {
+    // ???
+  }
+
+  &__loading-cover {
+    //@include state-is-loading-overlay;
+    top: 0;
+    z-index: 6;
+  }
+
+  //&__container--ios-fix {
+  //  & > * {
+  //    -webkit-transform: translateZ(0);
+  //  }
+  //}
+
+  &__container {
+    overflow: auto;
+    // WARN this may break rendering of the whole element,
+    // resulting in an invisible, yet clickable block (see fix above)
+    -webkit-overflow-scrolling: touch;
+    position: fixed;
+    z-index: $z-modal;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    &__box {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      margin: 40px auto;
+      z-index: $z-modal;
+      background: $color-white;
+      width: 640px;
+
+      @include responsive-down(phablet) {
+        width: 300px;
+      }
+
+      ~ .container {
+        filter: blur(3px);
+      }
+
+      &__content {
+        width: 100%;
+        min-height: 90px; // for the initial loader
+        position: relative;
+
+        &__header {
+          display: flex;
+          height: $header-height;
+          box-shadow: 0 40px 50px 0 rgba(0, 0, 0, 0.04);
+          text-align: center;
+
+          .placeholder {
+            width: 10%;
+            height: $header-height;
+          }
+
+          .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            height: $header-height;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-family: Roboto, sans-serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: $color-grey;
+
+            @include responsive-down(phablet) {
+              font-size: 16px;
+            }
+          }
+        }
+
+        // yuck, this is a content__content box
+        &__content {
+          display: flex;
+          flex-direction: column;
+          font-size: 16px;
+
+          footer {
+            @include layout-clearfix;
+            width: 100%;
+
+            &.padded {
+              padding: 10px 20px 15px 20px;
+              @include responsive-down(phablet) {
+                padding: 10px;
+              }
+            }
+
+            // if you have a fixed height modal
+            // and you have enough space in the bottom
+            &.pull-down {
+              position: absolute;
+              width: 100%;
+              left: 0;
+              bottom: 0;
+            }
+
+            &.pull-down-padded {
+              position: absolute;
+              width: calc(100% - 40px);
+              left: 20px;
+              bottom: 15px;
+
+              @include responsive-down(phablet) {
+                width: calc(100% - 20px);
+                left: 10px;
+                bottom: 10px;
+              }
+            }
+
+            .pull-right {
+              float: right;
+              margin-left: 10px;
+            }
+
+            .pull-left {
+              float: left;
+              margin-right: 10px;
+            }
+
+            // TODO support links too?
+          }
+          // end footer
+        }
+      }
+    }
+  }
+}

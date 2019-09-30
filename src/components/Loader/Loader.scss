@@ -9,6 +9,7 @@
   width: $loader-size;
   height: $loader-size;
   margin: auto;
+  border: 1px solid red;
 
   &--viewport-center {
     position: fixed;
@@ -49,8 +50,8 @@
 
   &__ring {
     border-radius: 50%;
-    width: $loader-size - $loader-thickness * 2;
-    height: $loader-size - $loader-thickness * 2;
+    width: $loader-size;
+    height: $loader-size;
     position: absolute;
     border: $loader-thickness solid $color-lightgrey;
     border-top: $loader-thickness solid $color-darkblue;

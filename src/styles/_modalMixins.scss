@@ -1,0 +1,13 @@
+@import "variables";
+
+// cover layer, mostly for LEGACY or standalone elements!
+@mixin modal-overlay {
+  content: "";
+  background-color: rgba($color-grey, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: $z-modal-overlay;
+}

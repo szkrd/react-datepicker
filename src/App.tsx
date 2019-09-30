@@ -1,26 +1,45 @@
-import React, { useState } from 'react'
-import styles from './App.module.scss'
-import DatePicker from './components/DatePicker/DatePicker'
-import moment, { Moment } from 'moment'
-import Link from './components/Link/Link'
-import Loader from './components/Loader/Loader'
-import Button from './components/Button/Button'
+import React, { useState } from 'react';
+import styles from './App.module.scss';
+import DatePicker from './components/DatePicker/DatePicker';
+import moment, { Moment } from 'moment';
+import Link from './components/Link/Link';
+import Loader from './components/Loader/Loader';
+import Button from './components/Button/Button';
+import ButtonTabSwitcher from './components/ButtonTabSwitcher/ButtonTabSwitcher';
+import DatePickerDialog from './components/DatePicker/DatePickerDialog';
+import Icon from './components/Icon/Icon'
+import Modal from './components/Modal/Modal'
+
+const forceStyle = (className = '') => `${className} ${styles.override}`;
 
 const App: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<Moment>(moment())
+  const [selectedDate, setSelectedDate] = useState<Moment>(moment());
+  const [showModal, setShowModal] = useState<boolean>(false)
   const onChange = (date: Moment) => {
-    setSelectedDate(date)
-    console.info('date set to ', date.format('l'))
-  }
+    setSelectedDate(date);
+    console.info('date set to ', date.format('l'));
+  };
+  const today = moment();
+  const minDate = moment().subtract(5, 'years');
+  const maxDate = moment();
   return (
     <div className={styles.app}>
-      <div>
-        <DatePicker onChange={onChange} selectedDate={selectedDate}/>
+      <div className={styles.panelCenteredContent}>
+        <DatePicker onChange={onChange} selectedDate={selectedDate} />
+      </div>
+      <div className={styles.panel}>
+        <DatePickerDialog
+          className={forceStyle(styles.datePickerDialogExample)}
+          viewportDate={today}
+          selectedDate={selectedDate}
+          onChange={onChange}
+          minDate={minDate}
+          maxDate={maxDate}
+        />
       </div>
       <hr className={styles.hr} />
       <p>
-        Links: <Link text="accumsan neque" to="/foo" />,{' '}
-        <Link text="vitae maximus" to="/bar" />
+        Links: <Link text="accumsan neque" to="/foo" />, <Link text="vitae maximus" to="/bar" />
       </p>
       <hr className={styles.hr} />
       <div>
@@ -45,8 +64,36 @@ const App: React.FC = () => {
         <Button text="ok" size="s" color="primary" /> &nbsp;
         <Button text="delete" size="s" color="danger" /> &nbsp;
       </div>
+      <hr className={styles.hr} />
+      <div className={styles.panel}>
+        <ButtonTabSwitcher leftText="Left item" rightText="Right item" />
+      </div>
+      <div className={styles.panel}>
+        <Icon id="logout--black" size="s" />
+        <Icon id="logout--black" size="m" />
+        <Icon id="logout--black" size="l" />
+      </div>
+      <div className={styles.panel}>
+        <Button text="show modal" onClick={() => setShowModal(true)}/>
+        {showModal && (
+          <Modal
+            title="This is a modal"
+            exit={() => setShowModal(false)}
+            loading={false}
+            boxModelBorderBox
+          >
+            <p>
+              Simple text content
+            </p>
+            <footer className="padded">
+              <Button className="pull-left" text="close" color="secondary"/>
+              <Button className="pull-right" text="delete" color="danger"/>
+            </footer>
+          </Modal>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
